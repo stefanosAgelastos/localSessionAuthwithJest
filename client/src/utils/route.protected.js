@@ -1,20 +1,21 @@
-import React from 'react-router-dom';
-import {Route, Redirect} from 'react-router-dom';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import fakeAuth from "./auth.service";
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
       fakeAuth.isAuthenticated === true ? (
         <Component {...props} />
       ) : (
-        <Redirect to="/login" />
+        <Redirect to="/signin" />
       )
     }
   />
 );
 
-export default PrivateRoute;
+export default ProtectedRoute;
 
 // Requirement 1.
 // It has the same API as <Route />

@@ -1,3 +1,4 @@
+
 const fakeAuth = {
     isAuthenticated: false,
     authenticate(cb) {

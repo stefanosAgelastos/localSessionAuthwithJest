@@ -43,7 +43,7 @@ body {
 
 body {
 	background-color: #1BBC9B;
-	font-family: Cabin-Regular;
+	font-family: ProbaPro-Regular;
 }
 .contact-form {
     margin: 0 auto;
@@ -70,7 +70,7 @@ h1 {
     padding: 10px 35px 10px 10px;
     border: none;
     width: 75%;
-	font-family: Cabin-Regular;
+	font-family: ProbaPro-Regular;
 	color: gray;
 }
 .signin  input[type="password"] {
@@ -80,7 +80,7 @@ h1 {
     padding: 10px 35px 10px 10px;
     border: none;
     width: 75%;
-	font-family: Cabin-Regular;
+	font-family: ProbaPro-Regular;
 	color: gray;
 }
 .signin input[type="submit"] {
@@ -116,11 +116,11 @@ form p a:hover {
     margin-top: 100px;
 }
 .footer p {
-    font-family: Cabin-Regular;
+    font-family: ProbaPro-Regular;
     color: ghostwhite;
 }
 .footer a {
-    font-family: Cabin-Regular;
+    font-family: ProbaPro-Regular;
     color: #fff;
     text-decoration: none;
      -webkit-transition: all 0.5s ease-in-out;
