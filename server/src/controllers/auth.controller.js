@@ -1,4 +1,3 @@
-import Location from "../models/location";
 /* imports */
 
 /**
