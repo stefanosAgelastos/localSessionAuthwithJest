@@ -3,7 +3,7 @@ import cors from 'cors';
 import router from './routes/auth.routes';
 import serverConfig from './server.config';
 
-export default ( app ) => {
+const appLoader = ( app ) => {
 
   // Enable Cross Origin Resource Sharing to all origins by default
   app.use(cors());
@@ -43,4 +43,6 @@ export default ( app ) => {
       },
     });
   });
+  console.log("applied loaders");
 };
+export default appLoader;
