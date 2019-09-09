@@ -58,3 +58,14 @@ export function signOut(req, res) {
   req.logout();
   res.send({ msg: "loggging out" });
 }
+
+/**
+ * Sends a secret message when authenticated
+ * Follows passport.authenticate() middleware, defined in auth.routes
+ * @param req
+ * @param res
+ * @returns void
+ */
+export function secret(req, res) {
+  res.send({ msg: "THE SECRET" });
+}

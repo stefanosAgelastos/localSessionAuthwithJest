@@ -12,6 +12,7 @@ authRouter.route('/signin').post(passport.authenticate('local'),AuthController.s
 // Sign Out
 authRouter.route('/signout').post(passport.authenticate('local'),AuthController.signOut);
 
-
+// Test protected secret
+authRouter.route('/secret').get(passport.authenticate('local'),AuthController.secret);
 
 export default authRouter;
