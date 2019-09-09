@@ -1,35 +1,28 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
+import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-
-	username: { type: String, unique: true, required: true },
-	password: { type: String, unique: false, required: true }
-
-})
+  username: { type: String, unique: true, required: true },
+  password: { type: String, unique: false, required: true }
+});
 
 // Defining Schema methods
 userSchema.methods = {
-	verifyPassword: function (inputPassword) {
-		return bcrypt.compareSync(inputPassword, this.password)
-	},
-	hashPassword: plainTextPassword => {
-		return bcrypt.hashSync(plainTextPassword, 10)
-	}
-}
+  verifyPassword: function(inputPassword) {
+    return bcrypt.compareSync(inputPassword, this.password);
+  },
+  hashPassword: plainTextPassword => {
+    return bcrypt.hashSync(plainTextPassword, 10);
+  }
+};
 
 // Defining hooks for pre-saving
-userSchema.pre('save', function (next) {
-	if (!this.password) {
-		console.log('models/user.js =======NO PASSWORD PROVIDED=======')
-		next()
-	} else {
-		console.log('models/user.js hashPassword in pre save');
-		this.password = this.hashPassword(this.password)
-		next()
-	}
-})
+userSchema.pre("save", function(next) {
+  console.log("hashing password for: "+this.username);
+  this.password = this.hashPassword(this.password);
+  next();
+});
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model("User", userSchema);
 export default User;
