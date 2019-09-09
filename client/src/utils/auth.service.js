@@ -16,10 +16,6 @@ const auth = {
         console.log(response);
         if (!response.data.errmsg) {
           console.log("successful signup");
-          this.setState({
-            //redirect to login page
-            redirectTo: "/"
-          });
         } else {
           console.log("username already taken");
         }
@@ -29,9 +25,24 @@ const auth = {
         console.log(error);
       });
   },
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
+  authenticate(cred) {
+    axios
+    .post(authUrl + "/signin", {
+      username: cred.username,
+      password: cred.password
+    })
+    .then(response => {
+      console.log(response);
+      if (!response.data.errmsg) {
+        console.log("successful signin");
+      } else {
+        console.log("username already taken");
+      }
+    })
+    .catch(error => {
+      console.log("signup error: ");
+      console.log(error);
+    });
   },
   signout(cb) {
     this.isAuthenticated = false;
@@ -40,7 +51,3 @@ const auth = {
 };
 
 export default auth;
-
-/* 
-      
-  */

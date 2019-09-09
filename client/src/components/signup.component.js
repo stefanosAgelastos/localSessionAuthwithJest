@@ -59,6 +59,9 @@ class Signup extends React.Component {
           handleChange={this.handleChange}
           handleBlur={this.handleBlur}
           handleSubmit={this.handleSubmit}
+          submitText="Sign Up"
+          linkText="Already have an account?"
+          linkPath="/signin"
         />
       </React.Fragment>
     );

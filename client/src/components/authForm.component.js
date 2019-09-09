@@ -23,9 +23,9 @@ const AuthForm = (props) => (
             onChange={props.handleChange}
             onBlur={props.handleBlur}
           />
-          <input type="submit" value="Login" />
+          <input type="submit" value={props.submitText} />
           <p>
-            <a href="#">Already have an account?</a>
+            <a href={props.linkPath}>{props.linkText}</a>
           </p>
         </form>
       </div>
