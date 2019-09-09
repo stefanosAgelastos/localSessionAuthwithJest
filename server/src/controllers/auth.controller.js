@@ -1,54 +1,60 @@
 /* imports */
+import User from "../models/auth.User";
 
 /**
  * Sign Up new User
- * @param req
+ * @param req expect content-type: json, body has username and password fields
  * @param res
  * @returns void
  */
 export function signUp(req, res) {
-  /*   Location.find().sort('-dateAdded').exec((err, locations) => {
+  console.log("user signup");
+  console.log(req.body);
+
+  const { username, password } = req.body;
+
+  User.findOne({ username: username }, (err, user) => {
     if (err) {
-      res.status(500).send(err);
+      console.log("User.js posting error: ", err);
+    } else if (user) {
+      res.json({
+        error: `Sorry, ${username} username already exists`
+      });
+    } else {
+      const newUser = new User({
+        username: username,
+        password: password
+      });
+      newUser.save((err, savedUser) => {
+        console.log("save error:", err);
+        res.json(savedUser);
+      });
     }
-  }); */
-  res.json(true);
+  });
 }
 
 /**
- * Sign In User
+ * Sign In User,
+ * Follows passport.authenticate() middleware, defined in auth.routes
  * @param req
  * @param res
  * @returns void
  */
 export function signIn(req, res) {
-  /*   if (!req.body.location.author || !req.body.location.title) {
-    res.status(403).end();
-  }
-
-  const newLocation = new Location(req.body.location);
-  newLocation.slug = slug(newLocation.title.toLowerCase(), { lowercase: true });
-  newLocation.cuid = cuid();
-  newLocation.save((err, saved) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.json({ location: saved });
-    }
-  }); */
+  var userInfo = {
+    username: req.user.username
+  };
+  res.send(userInfo);
 }
 
 /**
  * Sign Out User from session
+ * Follows passport.authenticate() middleware, defined in auth.routes
  * @param req
  * @param res
  * @returns void
  */
 export function signOut(req, res) {
-/*   Location.findOne({ cuid: req.params.cuid }).exec((err, location) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    res.json({ location });
-  }); */
+  req.logout();
+  res.send({ msg: "loggging out" });
 }
