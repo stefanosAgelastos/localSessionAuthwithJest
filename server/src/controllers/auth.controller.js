@@ -13,24 +13,24 @@ export function signUp(req, res) {
 
   const { username, password } = req.body;
 
-  User.findOne({ username: username }, (err, user) => {
-    if (err) {
-      console.log("User.js posting error: ", err);
-    } else if (user) {
-      res.json({
-        error: `Sorry, ${username} username already exists`
-      });
-    } else {
-      const newUser = new User({
-        username: username,
-        password: password
-      });
-      newUser.save((err, savedUser) => {
-        console.log("save error:", err);
-        res.json(savedUser);
-      });
-    }
-  });
+  User.findOne({ username: username })
+    .then(user => {
+      if (user) {
+        res.status(409).send(`Sorry, username ${username} already exists`);
+      } else {
+        const newUser = new User({
+          username: username,
+          password: password
+        });
+        newUser.save().then(user => {
+          console.log("SUCCESSFULL SIGNUP");
+          res.json(user);
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send(`Ups, Server error`);
+    });
 }
 
 /**
