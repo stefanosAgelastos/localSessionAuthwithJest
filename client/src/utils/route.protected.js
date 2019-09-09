@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import fakeAuth from "./auth.service";
+import auth from "./auth.service";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      fakeAuth.isAuthenticated === true ? (
+      auth.isAuthenticated === true ? (
         <Component {...props} />
       ) : (
         <Redirect to="/signin" />

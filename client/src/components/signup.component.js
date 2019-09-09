@@ -1,19 +1,21 @@
 import React from "react";
+import auth from "../utils/auth.service";
+import AuthForm from "./authForm.component";
 
-const initialState= {
-    username: "Enter Your Username",
-    password: "Password"
-}
+const initialState = {
+  username: "Enter Your Username",
+  password: "Password"
+};
 
 class Signup extends React.Component {
   constructor() {
     super();
     this.state = {
       username: initialState.username,
-      password: initialState.password,
-      redirectTo: null
+      password: initialState.password
     };
     /*     this.handleSubmit = this.handleSubmit.bind(this); */
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
@@ -39,42 +41,25 @@ class Signup extends React.Component {
       });
     }
   }
+  handleSubmit(event) {
+    console.log("sign-up handleSubmit, username: ");
+    console.log(this.state.username);
+    event.preventDefault();
+    auth.register(this.state);
 
+    //request to server to add a new username/password
+  }
   render() {
     return (
       <React.Fragment>
-        <div className="contact-form">
-          <div className="signin">
-            <form>
-              <input
-                type="text"
-                className="user"
-                name="username"
-                value={this.state.username}
-                onFocus={this.handleFocus}
-                onChange={this.handleChange}
-                onBlur={this.handleBlur}
-/*                 onBlur={() => {
-                  if (event.target.value === "")
-                    this.setState({ username: "Enter Your Username" });
-                }} */
-              />
-              <input
-                type="password"
-                className="pass"
-                name="password"
-                value={this.state.password}
-                onFocus={this.handleFocus}
-                onChange={this.handleChange}
-                onBlur={this.handleBlur}
-              />
-              <input type="submit" value="Login" />
-              <p>
-                <a href="#">Lost your password?</a>
-              </p>
-            </form>
-          </div>
-        </div>
+        <AuthForm
+          username={this.state.username}
+          password={this.state.password}
+          handleFocus={this.handleFocus}
+          handleChange={this.handleChange}
+          handleBlur={this.handleBlur}
+          handleSubmit={this.handleSubmit}
+        />
       </React.Fragment>
     );
   }
