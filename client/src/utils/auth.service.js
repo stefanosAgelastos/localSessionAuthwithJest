@@ -7,7 +7,7 @@ const auth = {
   register(cred) {
     console.log(cred);
     axios
-      .post(authUrl+"/signup", {
+      .post(authUrl + "/signup", {
         username: cred.username,
         password: cred.password
       })
@@ -19,16 +19,20 @@ const auth = {
           // username already exists
           console.log(err.response.data);
         } else {
-          console.log("error try again later, ",err.response.data);
+          console.log("error try again later, ", err.response.data);
         }
       });
   },
   authenticate(cred) {
     axios
-      .post(authUrl + "/signin", {
-        username: cred.username,
-        password: cred.password
-      })
+      .post(
+        authUrl + "/signin",
+        {
+          username: cred.username,
+          password: cred.password
+        }/* ,
+        { withCredentials: true } */
+      )
       .then(response => {
         console.log(response);
         if (!response.data.errmsg) {

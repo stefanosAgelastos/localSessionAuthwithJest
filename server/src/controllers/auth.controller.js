@@ -40,11 +40,13 @@ export function signUp(req, res) {
  * @param res
  * @returns void
  */
-export function signIn(req, res) {
+export function signIn(req, res, next) {
+  console.log("signin controller, req: ", req.session);
   var userInfo = {
     username: req.user.username
   };
-  res.send(userInfo);
+  console.log("before send response is: ", res);
+  res.json(userInfo);
 }
 
 /**

@@ -19,6 +19,7 @@ const strategy = new LocalStrategy(
    * @returns void
    */
   function(username, password, done) {
+    console.log("verify method")
     User.findOne({ username: username }, (err, user) => {
       if (err) {
         return done(err);
