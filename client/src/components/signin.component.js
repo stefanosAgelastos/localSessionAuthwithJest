@@ -42,16 +42,15 @@ class Signin extends React.Component {
     }
   }
   handleSubmit(event) {
-    let context = this.context;
     console.log("sign-up handleSubmit, username: ");
     console.log(this.state.username);
     event.preventDefault();
     auth.authenticate(this.state);
-    context.toggleAuthorized();
+    this.context.setUserName("test");
     //request to server to add a new username/password
-    console.log(context.authStatus);
   }
   render() {
+    console.log(this.context.userName);
     return (
       <React.Fragment>
         <AuthForm

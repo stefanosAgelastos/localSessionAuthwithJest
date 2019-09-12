@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { AuthContext, authorized } from "./auth.context";
+import { AuthContext } from "./auth.context";
 import Secret from "../components/secret.component";
 import Signup from "../components/signup.component";
 import Signin from "../components/signin.component";
@@ -10,21 +10,31 @@ class MainRoutes extends React.Component {
   constructor(props) {
     super(props);
 
-    this.toggleAuthorized = () => {
-      console.log("toggleAuth");
-      this.setState(state => ({
-        authStatus:
-          state.authStatus === authorized.no
-            ? authorized.yes
-            : authorized.no,
-      }));
+    this.setUserName = name => {
+      console.log("setUserName");
+      this.setState({
+        authStatus: true,
+        userName: name
+      });
     };
 
-    // State also contains the updater function so it will
-    // be passed down into the context provider
+    this.clearUserName = () => {
+      console.log("clearUserName");
+      this.setState({
+        authStatus: false,
+        userName: undefined
+      });
+    };
+
+    /*
+     * State is stored in the context,
+     * methods to update the state are also passed
+     */
     this.state = {
-      authStatus: authorized.no,
-      toggleAuthorized: this.toggleAuthorized,
+      authStatus: false,
+      userName: undefined,
+      setUserName: this.setUserName,
+      clearUserName: this.clearUserName
     };
   }
 

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { AuthContext, authorized } from "./auth.context";
+import { AuthContext } from "./auth.context";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const auth = useContext(AuthContext);
@@ -8,7 +8,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        auth.authStatus === authorized.yes ? (
+        auth.authStatus === true ? (
           <Component {...props} />
         ) : (
           <Redirect to="/signin" />
