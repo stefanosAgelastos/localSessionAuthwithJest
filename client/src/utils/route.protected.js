@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
-import auth from "./auth.service";
+import { AuthContext, authorized } from "./auth.context";
 
-const ProtectedRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      auth.isAuthenticated === true ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/signin" />
-      )
-    }
-  />
-);
-
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+  const auth = useContext(AuthContext);
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        auth === authorized.yes ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/signin" />
+        )
+      }
+    />
+  );
+};
 export default ProtectedRoute;
 
 // Requirement 1.
