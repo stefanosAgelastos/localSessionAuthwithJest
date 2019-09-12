@@ -1,4 +1,5 @@
 import React from "react";
+import { AuthContext } from '../utils/auth.context';
 import auth from "../utils/auth.service";
 import AuthForm from "./authForm.component";
 
@@ -41,12 +42,14 @@ class Signin extends React.Component {
     }
   }
   handleSubmit(event) {
+    let context = this.context;
     console.log("sign-up handleSubmit, username: ");
     console.log(this.state.username);
     event.preventDefault();
     auth.authenticate(this.state);
-
+    context.toggleAuthorized();
     //request to server to add a new username/password
+    console.log(context.authStatus);
   }
   render() {
     return (
@@ -66,5 +69,6 @@ class Signin extends React.Component {
     );
   }
 }
+Signin.contextType = AuthContext;
 
 export default Signin;
