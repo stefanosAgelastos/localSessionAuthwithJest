@@ -3,6 +3,10 @@ import axios from "axios";
 const authUrl = "http://localhost:8000/api";
 
 const authServices = {
+  /**
+   * Handes the signup backend request
+   * called from signup.component submit method
+   */
   register(cred) {
     console.log("registering user: ", cred);
     return axios
@@ -27,17 +31,17 @@ const authServices = {
         }
       });
   },
+  /**
+   * Handes the signin backend request
+   * called from signin.component submit method
+   */
   authenticate(cred) {
     console.log("authorising user: ", cred);
     return axios
-      .post(
-        authUrl + "/signin",
-        {
-          username: cred.username,
-          password: cred.password
-        } /* ,
-        { withCredentials: true } */
-      )
+      .post(authUrl + "/signin", {
+        username: cred.username,
+        password: cred.password
+      })
       .then(response => {
         console.log(response);
         if (!response.data.errmsg) {
@@ -49,9 +53,28 @@ const authServices = {
         throw error;
       });
   },
+  /**
+   * Handes the signout backend request
+   *
+   */
   signout(cb) {
     this.isAuthenticated = false;
     setTimeout(cb, 100); // fake async
+  },
+  secret() {
+    console.log("requesting secret: ");
+    return axios
+      .get(authUrl + "/secret", { withCredentials: true })
+      .then(response => {
+        console.log(response);
+        if (!response.data.errmsg) {
+          return response.data;
+        }
+      })
+      .catch(err => {
+        console.log("error retreiving secret: ");
+        throw err;
+      });
   }
 };
 

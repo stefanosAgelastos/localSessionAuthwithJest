@@ -47,17 +47,14 @@ class Signin extends React.Component {
     event.preventDefault();
     authServices
       .authenticate(this.state)
-      .then((done, err) => {
+      .then(done => {
         console.log("promise: ", done);
-        if(done){
+        if (done) {
           this.context.setUserName(done);
           this.props.history.replace("/");
         }
-/*         err => console.log(err)
- */        /* TODO handle error, maybe return error from service? */
-      }).catch(err => console.log(err));
-
-    //request to server to add a new username/password
+      })
+      .catch(err => console.log(err));
   }
   render() {
     console.log(this.context.userName);

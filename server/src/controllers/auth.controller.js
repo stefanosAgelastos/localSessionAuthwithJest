@@ -42,8 +42,7 @@ export function signUp(req, res) {
  * @returns void
  */
 export function signIn(req, res, next) {
-  console.log("signin controller, req: ");
-  console.table(req.session);
+  console.log("signin controller");
   var userInfo = {
     username: req.user.username
   };
