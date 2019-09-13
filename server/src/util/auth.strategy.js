@@ -9,14 +9,16 @@ const strategy = new LocalStrategy(
   /**
    * Verify Callback,
    * finds the user that posseses the set of credentials
+   * it is used by passport.authenticate
+   * errors are handled with 401, otherwise provide custom callback to passport.authenticate
    * @param {string} username
    * @param {string} password
-   * @param {Function} done(err, user, message)
-   *         supply Passport with the user that authenticated
-   *         err {String}: error if an exception occured
-   *         user {user || boolean}: the authenticated user or else false
-   *         message { message: string}: authentication failure message
-   * @returns void
+   * @param {Function} done 
+   * @returns done(err, user, message)
+   * supply Passport with the user that authenticated
+   * err {String}: error if an exception occured
+   * user {user || boolean}: the authenticated user or else false
+   * message { message: string}: authentication failure message
    */
   function(username, password, done) {
     console.log("verify method")

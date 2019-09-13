@@ -27,8 +27,8 @@ class MainRoutes extends React.Component {
     };
 
     /*
-     * State is stored in the context,
-     * methods to update the state are also passed
+     * State holds authorization status and update methods,
+     * state is provided through AuthContext to children
      */
     this.state = {
       authStatus: false,

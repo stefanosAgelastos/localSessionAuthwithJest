@@ -1,6 +1,6 @@
 import React from "react";
-import { AuthContext } from '../utils/auth.context';
-import auth from "../utils/auth.service";
+import { AuthContext } from "../utils/auth.context";
+import authServices from "../utils/auth.service";
 import AuthForm from "./authForm.component";
 
 const initialState = {
@@ -45,8 +45,18 @@ class Signin extends React.Component {
     console.log("sign-up handleSubmit, username: ");
     console.log(this.state.username);
     event.preventDefault();
-    auth.authenticate(this.state);
-    this.context.setUserName("test");
+    authServices
+      .authenticate(this.state)
+      .then((done, err) => {
+        console.log("promise: ", done);
+        if(done){
+          this.context.setUserName(done);
+          this.props.history.replace("/");
+        }
+/*         err => console.log(err)
+ */        /* TODO handle error, maybe return error from service? */
+      }).catch(err => console.log(err));
+
     //request to server to add a new username/password
   }
   render() {

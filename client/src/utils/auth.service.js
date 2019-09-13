@@ -2,17 +2,21 @@ import axios from "axios";
 
 const authUrl = "http://localhost:8000/api";
 
-const auth = {
-  isAuthenticated: false,
+const authServices = {
   register(cred) {
-    console.log(cred);
-    axios
+    console.log("registering user: ", cred);
+    return axios
       .post(authUrl + "/signup", {
         username: cred.username,
         password: cred.password
       })
-      .then(res => {
-        console.log("SUCCESS ", res.data);
+      .then(response => {
+        console.log(response);
+        if (!response.data.errmsg) {
+          return response.data.username;
+        } else {
+          console.log("username already taken");
+        }
       })
       .catch(err => {
         if (err.response.status === 409) {
@@ -24,26 +28,25 @@ const auth = {
       });
   },
   authenticate(cred) {
-    axios
+    console.log("authorising user: ", cred);
+    return axios
       .post(
         authUrl + "/signin",
         {
           username: cred.username,
           password: cred.password
-        }/* ,
+        } /* ,
         { withCredentials: true } */
       )
       .then(response => {
         console.log(response);
         if (!response.data.errmsg) {
-          console.log("successful signin");
-        } else {
-          console.log("username already taken");
+          return response.data.username;
         }
       })
       .catch(error => {
         console.log("signup error: ");
-        console.log(error);
+        throw error;
       });
   },
   signout(cb) {
@@ -52,4 +55,4 @@ const auth = {
   }
 };
 
-export default auth;
+export default authServices;

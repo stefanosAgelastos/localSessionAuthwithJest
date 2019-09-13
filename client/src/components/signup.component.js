@@ -1,5 +1,5 @@
 import React from "react";
-import auth from "../utils/auth.service";
+import authServices from "../utils/auth.service";
 import AuthForm from "./authForm.component";
 
 const initialState = {
@@ -45,7 +45,7 @@ class Signup extends React.Component {
     console.log("sign-up handleSubmit, username: ");
     console.log(this.state.username);
     event.preventDefault();
-    auth.register(this.state);
+    authServices.register(this.state);
 
     //request to server to add a new username/password
   }

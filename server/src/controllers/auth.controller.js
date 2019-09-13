@@ -4,7 +4,7 @@ import User from "../models/auth.User";
 /**
  * Sign Up new User
  * @param req expect content-type: json, body has username and password fields
- * @param res
+ * @param res 409 if username taken, 500 for other error, 200 and user if successful signup
  * @returns void
  */
 export function signUp(req, res) {
@@ -35,13 +35,15 @@ export function signUp(req, res) {
 
 /**
  * Sign In User,
- * Follows passport.authenticate() middleware, defined in auth.routes
+ * Follows passport.authenticate() middleware, set in auth.routes
+ * and defined as the verify method at auth.strategy
  * @param req
  * @param res
  * @returns void
  */
 export function signIn(req, res, next) {
-  console.log("signin controller, req: ", req.session);
+  console.log("signin controller, req: ");
+  console.table(req.session);
   var userInfo = {
     username: req.user.username
   };
@@ -51,7 +53,8 @@ export function signIn(req, res, next) {
 
 /**
  * Sign Out User from session
- * Follows passport.authenticate() middleware, defined in auth.routes
+ * Follows passport.authenticate() middleware, set in auth.routes
+ * and defined as the verify method at auth.strategy
  * @param req
  * @param res
  * @returns void
@@ -63,7 +66,8 @@ export function signOut(req, res) {
 
 /**
  * Sends a secret message when authenticated
- * Follows passport.authenticate() middleware, defined in auth.routes
+ * Follows passport.authenticate() middleware, set in auth.routes
+ * and defined as the verify method at auth.strategy
  * @param req
  * @param res
  * @returns void
