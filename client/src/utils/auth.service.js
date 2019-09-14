@@ -58,8 +58,30 @@ const authServices = {
       });
   },
   /**
+   * Get authStatus and username of session
+   */
+  getauthStatus(cb) {
+    console.log("Get authStatus");
+    return axios
+      .get(
+        authUrl + "/authStatus",
+        { withCredentials: true }
+      )
+      .then(response => {
+        console.log(response);
+        /* TODO would prefere to do this with http status */
+        if (!response.data.errmsg) {
+          return response.data.username;
+        }
+      })
+      .catch(error => {
+        console.log("signup error: ");
+        throw error;
+      });
+  },
+  /**
    * Handes the signout backend request
-   *
+   * TODO
    */
   signout(cb) {
     this.isAuthenticated = false;

@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AuthContext } from "./auth.context";
+import authServices from "../utils/auth.service";
 import Secret from "../components/secret.component";
 import Signup from "../components/signup.component";
 import Signin from "../components/signin.component";
@@ -37,12 +38,18 @@ class MainRoutes extends React.Component {
       clearUserName: this.clearUserName
     };
   }
-/**
- * Called before children components render,
- * to set initial authStatus and username
- */
+  /**
+   * Called before children components render,
+   * to set initial authStatus and username
+   */
   componentDidMount() {
     console.log("routes.main DidMount");
+    authServices.getauthStatus().then(done => {
+      console.log("promise: ", done);
+      if (done) {
+        this.setUserName(done);
+      }
+    });
   }
 
   render() {

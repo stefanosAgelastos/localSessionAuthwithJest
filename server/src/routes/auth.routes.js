@@ -25,7 +25,7 @@ authRouter.route('/signup').post(AuthController.signUp);
 authRouter.route('/signin').post(passport.authenticate('local'),AuthController.signIn);
 
 // Get Session status
-authRouter.route('/authStatus').post(isAuthenticated,AuthController.authStatus);
+authRouter.route('/authStatus').get(isAuthenticated,AuthController.authStatus);
 
 // Sign Out
 authRouter.route('/signout').post(isAuthenticated,AuthController.signOut);

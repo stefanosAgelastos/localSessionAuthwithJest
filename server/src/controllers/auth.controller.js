@@ -41,7 +41,7 @@ export function signUp(req, res) {
  * @param res
  * @returns void
  */
-export function signIn(req, res, next) {
+export function signIn(req, res) {
   console.log("signin controller");
   var userInfo = {
     username: req.user.username
@@ -56,7 +56,7 @@ export function signIn(req, res, next) {
  * @param res
  * @returns void
  */
-export function authStatus(req, res, next) {
+export function authStatus(req, res) {
   console.log("authStatus controller");
   var userInfo = {
     username: req.user.username
