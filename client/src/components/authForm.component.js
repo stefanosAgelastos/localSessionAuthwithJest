@@ -2,8 +2,8 @@ import React from "react";
 
 const AuthForm = (props) => (
   <React.Fragment>
-    <div className="contact-form">
-      <div className="signin">
+    <div className="contact-main">
+      <div className="my-paper">
         <form onSubmit={props.handleSubmit}>
           <input
             type="text"

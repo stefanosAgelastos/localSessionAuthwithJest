@@ -1,6 +1,7 @@
 import React from "react";
 import authServices from "../utils/auth.service";
 import { AuthContext } from "../utils/auth.context";
+import { withAlert } from "react-alert";
 
 class ProtectedLayout extends React.Component {
   constructor() {
@@ -25,24 +26,35 @@ class ProtectedLayout extends React.Component {
       .catch(err => console.log(err));
   }
 
-  handleSignOut() {
+  handleSignOut(event) {
+    event.preventDefault();
     authServices.signout().then(done => {
       if (done) {
+        this.props.alert.success("Signed Out");
         this.context.clearUserName();
       }
+    }).catch(err => {
+      this.props.alert.error(err.message);
     });
   }
 
   render() {
     return (
       <React.Fragment>
-        <button onClick={this.handleSignOut}>{"Sign Out"}</button>
-        <div>{this.state.message}</div>
-        {this.props.children}
+        <div className="contact-main">
+          <div className="my-paper">
+            <form onSubmit={this.handleSignOut}>
+              <h1>{`Welcome ${this.context.userName}`}</h1>
+              <p>{this.state.message}</p>
+              <input type="submit" value={"Sign Out"} />
+            </form>
+            {this.props.children}
+          </div>
+        </div>
       </React.Fragment>
     );
   }
 }
 ProtectedLayout.contextType = AuthContext;
 
-export default ProtectedLayout;
+export default withAlert()(ProtectedLayout);

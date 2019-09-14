@@ -37,6 +37,7 @@ export function signUp(req, res) {
  * Sign In User,
  * Follows passport.authenticate() middleware, set in auth.routes
  * and defined as the verify method at auth.strategy
+ * verify will send 401 for wrong credentials
  * @param req
  * @param res
  * @returns void
@@ -72,6 +73,7 @@ export function authStatus(req, res) {
  * @returns void
  */
 export function signOut(req, res) {
+  console.log("signout controller");
   req.logout();
   res.send({ msg: "loggging out" });
 }
@@ -85,5 +87,5 @@ export function signOut(req, res) {
  */
 export function secret(req, res) {
   console.log("secret controller for user: ", req.user.username);
-  res.send({ message: `This is the big secret ${req.user.username}!`});
+  res.send({ message: `Oh, ${req.user.username}, the backend is also aware that this is you and sends this line as a greeting!`});
 }

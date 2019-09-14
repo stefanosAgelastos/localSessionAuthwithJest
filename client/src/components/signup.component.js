@@ -1,6 +1,7 @@
 import React from "react";
 import authServices from "../utils/auth.service";
 import AuthForm from "./authForm.component";
+import { withAlert } from "react-alert";
 
 const initialState = {
   username: "Enter Your Username",
@@ -46,9 +47,14 @@ class Signup extends React.Component {
     console.log("sign-up handleSubmit, username: ");
     console.log(this.state.username);
     event.preventDefault();
-    authServices.register(this.state).then(done => {
-      this.props.history.replace("/signin");
-    });
+    authServices
+      .register(this.state)
+      .then(done => {
+        this.props.alert.success("Sign Up successful");
+        this.props.alert.show("Please sign in");
+        this.props.history.replace("/signin");
+      })
+      .catch(err => this.props.alert.error(err.message));
 
     //request to server to add a new username/password
   }
@@ -71,4 +77,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+export default withAlert()(Signup);

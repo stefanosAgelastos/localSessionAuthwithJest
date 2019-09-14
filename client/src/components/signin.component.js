@@ -2,6 +2,7 @@ import React from "react";
 import { AuthContext } from "../utils/auth.context";
 import authServices from "../utils/auth.service";
 import AuthForm from "./authForm.component";
+import { withAlert } from "react-alert";
 
 const initialState = {
   username: "Enter Your Username",
@@ -51,14 +52,15 @@ class Signin extends React.Component {
       .then(done => {
         console.log("promise: ", done);
         if (done) {
+          this.props.alert.success("Signed in");
           this.context.setUserName(done);
           this.props.history.replace("/");
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => this.props.alert.error(err.message));
   }
   render() {
-    console.log(this.context.userName);
+    console.log("signin render");
     return (
       <React.Fragment>
         <AuthForm
@@ -78,4 +80,4 @@ class Signin extends React.Component {
 }
 Signin.contextType = AuthContext;
 
-export default Signin;
+export default withAlert()(Signin);

@@ -6,6 +6,9 @@ const authServices = {
   /**
    * Handes the signup backend request
    * called from signup.component submit method
+   * returns username if 200
+   * throws error message from server if 409
+   * throws custom error message if else
    */
   register(cred) {
     console.log("registering user: ", cred);
@@ -16,24 +19,26 @@ const authServices = {
       })
       .then(response => {
         console.log(response);
-        if (!response.data.errmsg) {
-          return response.data.username;
-        } else {
-          console.log("username already taken");
-        }
+        return response.data.username;
       })
-      .catch(err => {
-        if (err.response.status === 409) {
+      .catch(error => {
+        // first check if err.response is defined
+        if (error.response && error.response.status === 409) {
           // username already exists
-          console.log(err.response.data);
+          console.log(error.response.data);
+          throw new Error(error.response.data);
         } else {
-          console.log("error try again later, ", err.response.data);
+          // then it must be a 5XX errro
+          throw new Error("Server error, try again");
         }
       });
   },
   /**
    * Handes the signin backend request
    * called from signin.component submit method
+   * returns username if 200
+   * throws custom error message if 401
+   * throws custom error message if else
    */
   authenticate(cred) {
     console.log("authorising user: ", cred);
@@ -48,60 +53,53 @@ const authServices = {
       )
       .then(response => {
         console.log(response);
-        if (!response.data.errmsg) {
-          return response.data.username;
-        }
+        return response.data.username;
       })
       .catch(error => {
-        console.log("signup error: ");
-        throw error;
+        console.log("signin error: ", error);
+        // first check if err.response is defined
+        if (error.response && error.response.status === 401)
+          throw new Error("Wrong credentials");
+        // then it must be a 5XX errro
+        throw new Error("Server error, try again");
+      });
+  },
+  /**
+   * Handes the signout backend request
+   * returns true if 200
+   * throws custom error message if else
+   */
+  signout() {
+    console.log("Get signout");
+    return axios
+      .get(authUrl + "/signout", { withCredentials: true })
+      .then(response => {
+        console.log(response);
+        return true;
+      })
+      .catch(error => {
+        console.log("signOut error: ");
+        throw new Error("Couldn't sign out at the moment");
       });
   },
   /**
    * Get authStatus and username of session
    */
-  getauthStatus(cb) {
+  getauthStatus() {
     console.log("Get authStatus");
     return axios
-      .get(
-        authUrl + "/authStatus",
-        { withCredentials: true }
-      )
+      .get(authUrl + "/authStatus", { withCredentials: true })
       .then(response => {
         console.log(response);
-        /* TODO would prefere errors as http status */
-        if (!response.data.errmsg) {
-          return response.data.username;
-        }
+        return response.data.username;
       })
       .catch(error => {
         console.log("authStatus error: ");
-        throw error;
       });
   },
   /**
-   * Handes the signout backend request
-   * TODO
+   * Get's content from a protected endpoint
    */
-  signout(cb) {
-    console.log("Get signout");
-    return axios
-      .get(
-        authUrl + "/signout",
-        { withCredentials: true }
-      )
-      .then(response => {
-        console.log(response);
-        /* TODO would prefere errors as http status */
-        if (!response.data.errmsg) {
-          return true;
-        }
-      })
-      .catch(error => {
-        console.log("authStatus error: ");
-        throw error;
-      });
-  },
   secret() {
     console.log("requesting secret: ");
     return axios
@@ -114,7 +112,6 @@ const authServices = {
       })
       .catch(err => {
         console.log("error retreiving secret: ");
-        throw err;
       });
   }
 };
