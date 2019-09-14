@@ -1,13 +1,14 @@
 import React from "react";
-import ProfileLayout from "./profileLayout.component";
 import authServices from "../utils/auth.service";
+import { AuthContext } from "../utils/auth.context";
 
-class Secret extends React.Component {
+class ProtectedLayout extends React.Component {
   constructor() {
     super();
     this.state = {
       message: "loading"
     };
+    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
   componentDidMount() {
@@ -24,12 +25,24 @@ class Secret extends React.Component {
       .catch(err => console.log(err));
   }
 
+  handleSignOut() {
+    authServices.signout().then(done => {
+      if (done) {
+        this.context.clearUserName();
+      }
+    });
+  }
+
   render() {
     return (
-      <ProfileLayout>
+      <React.Fragment>
+        <button onClick={this.handleSignOut}>{"Sign Out"}</button>
         <div>{this.state.message}</div>
-      </ProfileLayout>
+        {this.props.children}
+      </React.Fragment>
     );
   }
 }
-export default Secret;
+ProtectedLayout.contextType = AuthContext;
+
+export default ProtectedLayout;

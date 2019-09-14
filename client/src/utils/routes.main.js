@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AuthContext } from "./auth.context";
 import authServices from "../utils/auth.service";
-import Secret from "../components/secret.component";
+import ProtectedLayout from "../components/protectedLayout.component";
 import Signup from "../components/signup.component";
 import Signin from "../components/signin.component";
 import ProtectedRoute from "../utils/route.protected";
@@ -59,7 +59,7 @@ class MainRoutes extends React.Component {
     return (
       <AuthContext.Provider value={this.state}>
         <Router>
-          <ProtectedRoute exact path="/" component={Secret} />
+          <ProtectedRoute exact path="/" component={ProtectedLayout} />
           <Route exact path="/signin" component={Signin} />
           <Route exact path="/signup" component={Signup} />
         </Router>

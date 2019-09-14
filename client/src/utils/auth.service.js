@@ -69,7 +69,7 @@ const authServices = {
       )
       .then(response => {
         console.log(response);
-        /* TODO would prefere to do this with http status */
+        /* TODO would prefere errors as http status */
         if (!response.data.errmsg) {
           return response.data.username;
         }
@@ -84,8 +84,23 @@ const authServices = {
    * TODO
    */
   signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100); // fake async
+    console.log("Get signout");
+    return axios
+      .get(
+        authUrl + "/signout",
+        { withCredentials: true }
+      )
+      .then(response => {
+        console.log(response);
+        /* TODO would prefere errors as http status */
+        if (!response.data.errmsg) {
+          return true;
+        }
+      })
+      .catch(error => {
+        console.log("authStatus error: ");
+        throw error;
+      });
   },
   secret() {
     console.log("requesting secret: ");
