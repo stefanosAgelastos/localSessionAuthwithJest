@@ -42,6 +42,7 @@ class Signin extends React.Component {
     }
   }
   handleSubmit(event) {
+    /* TODO handle user info about errors and success */
     console.log("sign-up handleSubmit, username: ");
     console.log(this.state.username);
     event.preventDefault();

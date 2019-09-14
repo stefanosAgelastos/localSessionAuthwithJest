@@ -42,10 +42,13 @@ class Signup extends React.Component {
     }
   }
   handleSubmit(event) {
+    /* TODO handle user info about errors and success */
     console.log("sign-up handleSubmit, username: ");
     console.log(this.state.username);
     event.preventDefault();
-    authServices.register(this.state);
+    authServices.register(this.state).then(done => {
+      this.props.history.replace("/signin");
+    });
 
     //request to server to add a new username/password
   }
