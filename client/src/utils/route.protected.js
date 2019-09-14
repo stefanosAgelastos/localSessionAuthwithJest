@@ -9,8 +9,9 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        auth.authStatus === undefined ? (<div>Loading</div>)
-        : auth.authStatus === true ? (
+        auth.authStatus === undefined ? (
+          <div>Loading</div>
+        ) : auth.authStatus === true ? (
           <Component {...props} />
         ) : (
           <Redirect to="/signin" />

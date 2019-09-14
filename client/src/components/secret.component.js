@@ -1,5 +1,6 @@
 import React from "react";
 import authServices from "../utils/auth.service";
+import ProfileWrapper from "./protectedWrapper.component";
 
 class Secret extends React.Component {
   constructor() {
@@ -24,7 +25,11 @@ class Secret extends React.Component {
   }
 
   render() {
-    return <div>{this.state.message}</div>;
+    return (
+      <ProfileWrapper>
+        <div>{this.state.message}</div>
+      </ProfileWrapper>
+    );
   }
 }
 export default Secret;
