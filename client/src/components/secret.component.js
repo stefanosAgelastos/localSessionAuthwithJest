@@ -16,7 +16,7 @@ class Secret extends React.Component {
         console.log("secret promise: ", done);
         if (done) {
           this.setState({
-            message: done
+            message: done.message
           });
         }
       })
@@ -24,7 +24,7 @@ class Secret extends React.Component {
   }
 
   render() {
-    return <div>Secret stuff</div>;
+    return <div>{this.state.message}</div>;
   }
 }
 export default Secret;

@@ -46,14 +46,27 @@ export function signIn(req, res, next) {
   var userInfo = {
     username: req.user.username
   };
-  console.log("before send response is: ", res);
+  res.json(userInfo);
+}
+
+/**
+ * Returns authStatus and User's username of session cookie,
+ * Follows isAuthenticated() middleware, set in auth.routes
+ * @param req
+ * @param res
+ * @returns void
+ */
+export function authStatus(req, res, next) {
+  console.log("authStatus controller");
+  var userInfo = {
+    username: req.user.username
+  };
   res.json(userInfo);
 }
 
 /**
  * Sign Out User from session
- * Follows passport.authenticate() middleware, set in auth.routes
- * and defined as the verify method at auth.strategy
+ * Follows isAuthenticated() middleware, set in auth.routes
  * @param req
  * @param res
  * @returns void
@@ -65,12 +78,12 @@ export function signOut(req, res) {
 
 /**
  * Sends a secret message when authenticated
- * Follows passport.authenticate() middleware, set in auth.routes
- * and defined as the verify method at auth.strategy
+ * Follows isAuthenticated() middleware, set in auth.routes
  * @param req
  * @param res
  * @returns void
  */
 export function secret(req, res) {
-  res.send({ msg: "THE SECRET" });
+  console.log("secret controller for user: ", req.user.username);
+  res.send({ message: `This is the big secret ${req.user.username}!`});
 }

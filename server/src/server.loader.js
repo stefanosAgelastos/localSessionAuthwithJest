@@ -8,28 +8,19 @@ import connectMongo from "connect-mongo";
 import mongoose from "mongoose";
 
 const appLoader = app => {
-  
   // Middleware that transforms the raw string of req.body into json
   app.use(bodyParser.json());
-  
+
   // Declare Session Store
   const MongoStore = connectMongo(session);
-  
-  // Enable Cross Origin Resource Sharing to all origins by default
-  // TODO remove one of the two
-  app.use(cors({ credentials: true }));
-  app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-  });
 
-  // Middleware: creates the session, sets the session cookie and creates the session object in req object
-  // supposedly
+  // Set Cross Origin Resource Sharing to origin from request by default
+  // Allows Cross Origin with credentials
+  app.use(cors({ origin: true, credentials: true }));
+
+  /**
+   * Middleware: creates the session, sets the connect.sid cookie and creates the session object in req object
+   */
   app.use(
     session({
       secret: serverConfig.secret,
@@ -38,8 +29,7 @@ const appLoader = app => {
       saveUninitialized: true,
       cookie: {
         secure: false,
-        httpOnly: false,
-        domain: "127.0.0.1:3000"
+        httpOnly: false
       }
     })
   );
@@ -47,8 +37,12 @@ const appLoader = app => {
   // Middleware: initialize Instance of Passport as defined at ./util/auth.service
   app.use(passport.initialize());
 
-  // Midddleware: session will be established and maintained via a cookie set in the user's browser.
-  // will serialize and deserialize User instances to and from the session.
+  /**
+   * Midddleware:
+   * Based on the session id of the cookie, connect.sid
+   * will serialize and deserialize User instances from the session id,
+   * methods defined in auth.service
+   */
   app.use(passport.session());
 
   // Load API routes for Auth

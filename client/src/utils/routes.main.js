@@ -37,6 +37,13 @@ class MainRoutes extends React.Component {
       clearUserName: this.clearUserName
     };
   }
+/**
+ * Called before children components render,
+ * to set initial authStatus and username
+ */
+  componentDidMount() {
+    console.log("routes.main DidMount");
+  }
 
   render() {
     return (

@@ -38,10 +38,14 @@ const authServices = {
   authenticate(cred) {
     console.log("authorising user: ", cred);
     return axios
-      .post(authUrl + "/signin", {
-        username: cred.username,
-        password: cred.password
-      })
+      .post(
+        authUrl + "/signin",
+        {
+          username: cred.username,
+          password: cred.password
+        },
+        { withCredentials: true }
+      )
       .then(response => {
         console.log(response);
         if (!response.data.errmsg) {
