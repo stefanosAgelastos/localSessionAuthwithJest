@@ -11,7 +11,7 @@ const authRouter = new Router();
  * @param {*} next 
  */
 var isAuthenticated = function (req, res, next) {
-    console.log("iseAuthenticated middleware called");
+    console.log("isAuthenticated middleware called");
     if (req.isAuthenticated())
       return next();
       /* TODO maybe try to redirect in these cases? */

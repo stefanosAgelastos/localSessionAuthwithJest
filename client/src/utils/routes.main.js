@@ -32,7 +32,7 @@ class MainRoutes extends React.Component {
      * state is provided through AuthContext to children
      */
     this.state = {
-      authStatus: false,
+      authStatus: undefined, //waiting for componentDidmount
       userName: undefined,
       setUserName: this.setUserName,
       clearUserName: this.clearUserName
@@ -49,10 +49,13 @@ class MainRoutes extends React.Component {
       if (done) {
         this.setUserName(done);
       }
+    }).catch(err => {
+      this.clearUserName();
     });
   }
 
   render() {
+    console.log("routes.main render")
     return (
       <AuthContext.Provider value={this.state}>
         <Router>

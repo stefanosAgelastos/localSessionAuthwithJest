@@ -75,7 +75,7 @@ const authServices = {
         }
       })
       .catch(error => {
-        console.log("signup error: ");
+        console.log("authStatus error: ");
         throw error;
       });
   },

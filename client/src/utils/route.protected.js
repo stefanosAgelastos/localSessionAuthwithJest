@@ -4,11 +4,13 @@ import { AuthContext } from "./auth.context";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const auth = useContext(AuthContext);
+  console.log("route.protected render");
   return (
     <Route
       {...rest}
       render={props =>
-        auth.authStatus === true ? (
+        auth.authStatus === undefined ? (<div>Loading</div>)
+        : auth.authStatus === true ? (
           <Component {...props} />
         ) : (
           <Redirect to="/signin" />
