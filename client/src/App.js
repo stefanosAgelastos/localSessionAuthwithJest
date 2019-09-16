@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-import AuthorizedRoutes from "./utils/auth.routes.main";
+import AuthorizedRoutes from "./components/auth.routes.main";
 import Signup from "./components/signup.component";
 import Signin from "./components/signin.component";
 import ProtectedLayout from "./components/protectedLayout.component";
-import ProtectedRoute from "./utils/route.protected";
+import ProtectedRoute from "./components/route.protected";
 
 // alert cofiguration
 const options = {

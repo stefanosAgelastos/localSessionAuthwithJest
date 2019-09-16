@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { AuthContext } from "./auth.context";
+import { AuthContext } from "../utils/auth.context";
 
 /**
+ * Should be a child of AuthorizedRoutes
  * has the same API as <Route />
  * renders a <Route /> and passes all the props through to it.
  * on AuthContext.authStatus true renders the route

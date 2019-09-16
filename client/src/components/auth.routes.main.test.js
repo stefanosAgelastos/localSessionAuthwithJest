@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { shallow } from "enzyme";
 import AuthorizedRoutes from "./auth.routes.main";
-import Signup from "../components/signup.component";
-import Signin from "../components/signin.component";
+import Signup from "./signup.component";
+import Signin from "./signin.component";
 import { Route } from "react-router-dom";
 
 it("renders without crashing", () => {

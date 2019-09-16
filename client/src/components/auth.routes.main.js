@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { AuthContext } from "./auth.context";
-import authServices from "./auth.service";
+import { AuthContext } from "../utils/auth.context";
+import authServices from "../utils/auth.service";
 
 /**
  * Holds all routes that need access to AuthContext

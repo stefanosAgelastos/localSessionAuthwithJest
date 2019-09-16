@@ -86,7 +86,7 @@ const authServices = {
   /**
    * Get authStatus and username of session
    * returns username if 200
-   * TODO: throws error if else
+   * throws error if else
    */
   getAuthStatus() {
     console.log("Get authStatus");
@@ -97,7 +97,7 @@ const authServices = {
         return response.data.username;
       })
       .catch(error => {
-        console.log("authStatus error: ");
+        throw new Error("Not logged in");
       });
   },
   /**
