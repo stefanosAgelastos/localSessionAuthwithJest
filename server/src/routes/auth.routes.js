@@ -1,36 +1,52 @@
-import { Router } from 'express';
-import * as AuthController from '../controllers/auth.controller';
-import passport from '../util/auth.service';
+import { Router } from "express";
+import * as AuthController from "../controllers/auth.controller";
+import passport from "../util/auth.service";
 const authRouter = new Router();
 
 /**
+ * Custom middleware declaration
+ * should follow right after deserialize method from auth.service
  * Checks if the user is authenticated,
- * it is called right after deserialize method from auth.service
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
+ * on success it calls next
+ * on fail sends 401
  */
-var isAuthenticated = function (req, res, next) {
-    console.log("isAuthenticated middleware called");
-    if (req.isAuthenticated())
-      return next();
-      /* TODO maybe try to redirect in these cases? */
-      res.status(401).send(`Sorry, please signIn first`);
-    }
+var isAuthenticated = function(req, res, next) {
+  console.log("isAuthenticated middleware called");
+  if (req.isAuthenticated()) return next();
+  /* TODO maybe try to redirect in these cases? */
+  res.status(401).send(`Sorry, please signIn first`);
+};
 
-// Get Sign Up
-authRouter.route('/signup').post(AuthController.signUp);
+/**
+ * Get signup
+ * Public route
+ */
+authRouter.route("/signup").post(AuthController.signUp);
 
-// Get Sign In
-authRouter.route('/signin').post(passport.authenticate('local'),AuthController.signIn);
+/**
+ * Get Sign In
+ * Assigns passport.authenticate according to strategy
+ */
+authRouter
+  .route("/signin")
+  .post(passport.authenticate("local"), AuthController.signIn);
 
-// Get Session status
-authRouter.route('/authStatus').get(isAuthenticated,AuthController.authStatus);
+/**
+ * Get Session status
+ * Assigns isAuthenticated middleware
+ */
+authRouter.route("/authStatus").get(isAuthenticated, AuthController.authStatus);
 
-// Sign Out
-authRouter.route('/signout').get(isAuthenticated,AuthController.signOut);
+/**
+ * Get Sign Out
+ * Assigns isAuthenticated middleware
+ */
+authRouter.route("/signout").get(isAuthenticated, AuthController.signOut);
 
-// Test protected secret
-authRouter.route('/secret').get(isAuthenticated,AuthController.secret);
+/**
+ * Get Test protected secret
+ * Assigns isAuthenticated middleware
+ */
+authRouter.route("/secret").get(isAuthenticated, AuthController.secret);
 
 export default authRouter;

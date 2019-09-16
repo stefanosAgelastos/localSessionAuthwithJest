@@ -3,6 +3,7 @@ import User from "../models/auth.User";
 
 /**
  * Sign Up new User
+ * Holds the logic for persisting new User
  * @param req expect content-type: json, body has username and password fields
  * @param res 409 if username taken, 500 for other error, 200 and user if successful signup
  * @returns void
@@ -38,8 +39,8 @@ export function signUp(req, res) {
  * Follows passport.authenticate() middleware, set in auth.routes
  * and defined as the verify method at auth.strategy
  * verify will send 401 for wrong credentials
- * @param req
- * @param res
+ * @param req req has session and user fields
+ * @param res 200 with username in body
  * @returns void
  */
 export function signIn(req, res) {
@@ -53,8 +54,8 @@ export function signIn(req, res) {
 /**
  * Returns authStatus and User's username of session cookie,
  * Follows isAuthenticated() middleware, set in auth.routes
- * @param req
- * @param res
+ * @param req req has session and user fields
+ * @param res 200 with username in body
  * @returns void
  */
 export function authStatus(req, res) {
@@ -68,8 +69,8 @@ export function authStatus(req, res) {
 /**
  * Sign Out User from session
  * Follows isAuthenticated() middleware, set in auth.routes
- * @param req
- * @param res
+ * @param req req has session and user fields
+ * @param res 200 with custom message in body
  * @returns void
  */
 export function signOut(req, res) {
@@ -81,8 +82,8 @@ export function signOut(req, res) {
 /**
  * Sends a secret message when authenticated
  * Follows isAuthenticated() middleware, set in auth.routes
- * @param req
- * @param res
+ * @param req req has session and user fields
+ * @param res 200 with custom message in body
  * @returns void
  */
 export function secret(req, res) {

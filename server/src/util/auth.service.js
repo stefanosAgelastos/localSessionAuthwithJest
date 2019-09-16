@@ -12,7 +12,6 @@ import User from "../models/auth.User";
 passport.serializeUser((user, done) => {
   console.log("Serializing user");
   console.log("user: ", user);
-
   done(null, { _id: user._id });
 });
 

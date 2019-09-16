@@ -28,7 +28,7 @@ class AuthForm extends React.Component {
       [event.target.name]: event.target.value
     });
   }
-
+  /* removes the initial message if it's still there */
   handleFocus(event) {
     if (event.target.value === initialState[event.target.name]) {
       this.setState({
@@ -36,7 +36,7 @@ class AuthForm extends React.Component {
       });
     }
   }
-
+  /* resets the initial message if user leaves the field empty */
   handleBlur(event) {
     if (event.target.value === "") {
       this.setState({
@@ -45,11 +45,9 @@ class AuthForm extends React.Component {
     }
   }
   handleSubmit(event) {
-    /* TODO handle user info about errors and success */
     console.log("sign-up handleSubmit, username: ");
     console.log(this.state.username);
     event.preventDefault();
-    /* here we need help from parent */
     this.props.handleAuth(this.state);
   }
   render() {

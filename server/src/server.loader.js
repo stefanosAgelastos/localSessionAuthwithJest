@@ -8,18 +8,25 @@ import connectMongo from "connect-mongo";
 import mongoose from "mongoose";
 
 const appLoader = app => {
-  // Middleware that transforms the raw string of req.body into json
+
+  /**
+   * Middleware that transforms the raw string of req.body into json
+   */
   app.use(bodyParser.json());
 
-  // Declare Session Store
+  /**
+   * Declare Session Store
+   */
   const MongoStore = connectMongo(session);
 
-  // Set Cross Origin Resource Sharing to origin from request by default
-  // Allows Cross Origin with credentials
+  /**
+   * Set Cross Origin Resource Sharing to origin from request headers
+   * Allows Cross Origin with credentials
+   */
   app.use(cors({ origin: true, credentials: true }));
 
   /**
-   * Middleware: creates the session, sets the connect.sid cookie and creates the session object in req object
+   *Middleware: creates the session, sets the connect.sid cookie and creates the session object in req object
    */
   app.use(
     session({
@@ -34,7 +41,9 @@ const appLoader = app => {
     })
   );
 
-  // Middleware: initialize Instance of Passport as defined at ./util/auth.service
+  /**
+   * Middleware: initialize Instance of Passport as defined at ./util/auth.service
+   */
   app.use(passport.initialize());
 
   /**
@@ -44,8 +53,10 @@ const appLoader = app => {
    * methods defined in auth.service
    */
   app.use(passport.session());
-
-  // Load API routes for Auth
+  
+  /**
+   * Load API routes for Auth
+   */
   app.use(serverConfig.api.prefix, authRouter);
 
   console.log("applied loaders");

@@ -3,6 +3,12 @@ import authServices from "../utils/auth.service";
 import AuthForm from "./authForm.component";
 import { withAlert } from "react-alert";
 
+/**
+ * Renders the AuthForm
+ * passes handleSignUp callback to AuthForm
+ * on succeess informs user
+ * on fail alerts user
+ */
 class Signup extends React.Component {
   constructor() {
     super();
@@ -18,8 +24,6 @@ class Signup extends React.Component {
         this.props.history.replace("/signin");
       })
       .catch(err => this.props.alert.error(err.message));
-
-    //request to server to add a new username/password
   }
   render() {
     return (
