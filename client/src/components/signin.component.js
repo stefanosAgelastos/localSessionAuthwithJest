@@ -4,15 +4,22 @@ import authServices from "../utils/auth.service";
 import AuthForm from "./authForm.component";
 import { withAlert } from "react-alert";
 
+/**
+ * Renders the AuthForm
+ * Passes handleSignin to AuthForm
+ * on success calls setUserName of AuthContext
+ * and redirects to home
+ * on fail alerts user
+ */
 class Signin extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSignin = this.handleSignin.bind(this);
   }
 
-  handleSubmit(credentials) {
+  handleSignin({username, password}) {
     authServices
-      .authenticate(credentials)
+      .authenticate(username, password)
       .then(done => {
         console.log("promise: ", done);
         if (done) {
@@ -29,7 +36,7 @@ class Signin extends React.Component {
     return (
       <React.Fragment>
         <AuthForm
-          handleAuth={this.handleSubmit}
+          handleAuth={this.handleSignin}
           submitText="Sign In"
           linkText="You don't have an account?"
           linkPath="/signup"

@@ -5,6 +5,11 @@ const initialState = {
   password: "Password"
 };
 
+/**
+ * Renders username and password inputs
+ * updates state on change
+ * on submit it calls this.props.handleAuth(this.state)
+ */
 class AuthForm extends React.Component {
   constructor(props) {
     super(props);

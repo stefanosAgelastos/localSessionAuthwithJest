@@ -10,12 +10,12 @@ const authServices = {
    * throws username taken error message from server if 409
    * throws custom error message if else
    */
-  register(cred) {
-    console.log("registering user: ", cred);
+  register(username, password) {
+    console.log("registering user: ", username);
     return axios
       .post(authUrl + "/signup", {
-        username: cred.username,
-        password: cred.password
+        username: username,
+        password: password
       })
       .then(response => {
         console.log(response);
@@ -40,14 +40,14 @@ const authServices = {
    * throws wrong credentials error message if 401
    * throws custom error message if else
    */
-  authenticate(cred) {
-    console.log("authorising user: ", cred);
+  authenticate(username, password) {
+    console.log("authorising user: ", username);
     return axios
       .post(
         authUrl + "/signin",
         {
-          username: cred.username,
-          password: cred.password
+          username: username,
+          password: password
         },
         { withCredentials: true }
       )
@@ -88,7 +88,7 @@ const authServices = {
    * returns username if 200
    * TODO: throws error if else
    */
-  getauthStatus() {
+  getAuthStatus() {
     console.log("Get authStatus");
     return axios
       .get(authUrl + "/authStatus", { withCredentials: true })

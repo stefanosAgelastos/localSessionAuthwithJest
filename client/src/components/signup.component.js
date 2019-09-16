@@ -9,12 +9,12 @@ class Signup extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(credentials) {
+  handleSubmit({username, password}) {
     authServices
-      .register(credentials)
+      .register(username, password)
       .then(done => {
         this.props.alert.success("Sign Up successful");
-        this.props.alert.show("You can sign in now");
+        this.props.alert.show("You can now sign in ");
         this.props.history.replace("/signin");
       })
       .catch(err => this.props.alert.error(err.message));

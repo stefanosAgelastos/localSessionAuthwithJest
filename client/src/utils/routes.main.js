@@ -2,16 +2,13 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AuthContext } from "./auth.context";
 import authServices from "../utils/auth.service";
-import ProtectedLayout from "../components/protectedLayout.component";
-import Signup from "../components/signup.component";
-import Signin from "../components/signin.component";
-import ProtectedRoute from "../utils/route.protected";
 
 /**
  * Holds all routes that need access to AuthContext
  * Provides AuthContext to children
+ * Children should be ProtectedRoute Components
  */
-class MainRoutes extends React.Component {
+class AuthorizedRoutes extends React.Component {
   constructor(props) {
     super(props);
     /**
@@ -51,32 +48,36 @@ class MainRoutes extends React.Component {
   }
   /**
    * Called before children components render,
-   * to fetch initial authStatus and username
+   * to chech for initial authStatus and username
    */
   componentDidMount() {
     console.log("routes.main DidMount");
-    authServices.getauthStatus().then(done => {
-      console.log("promise: ", done);
-      if (done) {
-        this.setUserName(done);
-      }
-    }).catch(err => {
-      this.clearUserName();
-    });
+    authServices
+      .getAuthStatus()
+      .then(done => {
+        console.log("promise: ", done);
+        if (done) {
+          this.setUserName(done);
+        }
+      })
+      .catch(err => {
+        this.clearUserName();
+      });
   }
 
   render() {
-    console.log("routes.main render")
+    console.log("routes.main render");
     return (
       <AuthContext.Provider value={this.state}>
         <Router>
-          <ProtectedRoute exact path="/" component={ProtectedLayout} />
-          <Route exact path="/signin" component={Signin} />
-          <Route exact path="/signup" component={Signup} />
+          {/* Children protected routes render here */}
+          {this.props.children}
+          <Route exact path="/signin" component={this.props.signinComponent} />
+          <Route exact path="/signup" component={this.props.signupComponent} />
         </Router>
       </AuthContext.Provider>
     );
   }
 }
 
-export default MainRoutes;
+export default AuthorizedRoutes;
