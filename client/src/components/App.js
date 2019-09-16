@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MainRoutes from "../utils/routes.main";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
-import AlertTemplate from 'react-alert-template-basic'
+import AlertTemplate from "react-alert-template-basic";
 
 // alert cofiguration
 const options = {
@@ -15,9 +15,7 @@ class App extends Component {
   render() {
     return (
       <AlertProvider template={AlertTemplate} {...options}>
-        <div>
-          <MainRoutes />
-        </div>
+        <MainRoutes />
       </AlertProvider>
     );
   }

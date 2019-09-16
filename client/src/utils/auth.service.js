@@ -7,7 +7,7 @@ const authServices = {
    * Handes the signup backend request
    * called from signup.component submit method
    * returns username if 200
-   * throws error message from server if 409
+   * throws username taken error message from server if 409
    * throws custom error message if else
    */
   register(cred) {
@@ -37,7 +37,7 @@ const authServices = {
    * Handes the signin backend request
    * called from signin.component submit method
    * returns username if 200
-   * throws custom error message if 401
+   * throws wrong credentials error message if 401
    * throws custom error message if else
    */
   authenticate(cred) {
@@ -65,8 +65,9 @@ const authServices = {
       });
   },
   /**
-   * Handes the signout backend request
+   * Handles the signout backend request
    * returns true if 200
+   * TODO: handle 401
    * throws custom error message if else
    */
   signout() {
@@ -84,6 +85,8 @@ const authServices = {
   },
   /**
    * Get authStatus and username of session
+   * returns username if 200
+   * TODO: throws error if else
    */
   getauthStatus() {
     console.log("Get authStatus");

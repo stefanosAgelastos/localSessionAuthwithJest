@@ -7,10 +7,18 @@ import Signup from "../components/signup.component";
 import Signin from "../components/signin.component";
 import ProtectedRoute from "../utils/route.protected";
 
+/**
+ * Holds all routes that need access to AuthContext
+ * Provides AuthContext to children
+ */
 class MainRoutes extends React.Component {
   constructor(props) {
     super(props);
-
+    /**
+     * to be used by AuthContext
+     * sets session details in state
+     * @param {string} name username of authenticated user
+     */
     this.setUserName = name => {
       console.log("setUserName");
       this.setState({
@@ -18,7 +26,10 @@ class MainRoutes extends React.Component {
         userName: name
       });
     };
-
+    /**
+     * to be used by AuthContext
+     * clears session details from state
+     */
     this.clearUserName = () => {
       console.log("clearUserName");
       this.setState({
@@ -27,7 +38,7 @@ class MainRoutes extends React.Component {
       });
     };
 
-    /*
+    /**
      * State holds authorization status and update methods,
      * state is provided through AuthContext to children
      */
@@ -40,7 +51,7 @@ class MainRoutes extends React.Component {
   }
   /**
    * Called before children components render,
-   * to set initial authStatus and username
+   * to fetch initial authStatus and username
    */
   componentDidMount() {
     console.log("routes.main DidMount");
