@@ -17,16 +17,14 @@ class Signin extends React.Component {
     this.handleSignin = this.handleSignin.bind(this);
   }
 
-  handleSignin({username, password}) {
+  handleSignin({ username, password }) {
     authServices
       .authenticate(username, password)
       .then(done => {
         console.log("promise: ", done);
-        if (done) {
-          this.props.alert.success("Signed in");
-          this.context.setUserName(done);
-          this.props.history.replace("/");
-        }
+        this.props.alert.success("Signed in");
+        this.context.setUserName(done);
+        this.props.history.replace("/");
       })
       .catch(err => this.props.alert.error(err.message));
   }
