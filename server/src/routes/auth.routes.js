@@ -35,7 +35,7 @@ authRouter
  * Get Session status
  * Assigns isAuthenticated middleware
  */
-authRouter.route("/authStatus").get(isAuthenticated, AuthController.authStatus);
+authRouter.route("/authStatus").get(isAuthenticated, AuthController.signIn);
 
 /**
  * Get Sign Out

@@ -60,18 +60,21 @@ You will find all the configuration for the passport middleware that handles aut
 **Note** `auth.strategy.js` declares and export the strategy for authenticating the user during signin
 **Note** `auth.service.js` configures the methods for serialising and deserializing the User info from the cookie and exports the passport instance with the strategy
 
-### in /src/util
+### in /src/routes
 
+in ´auth.routes.js´ middleware are assigned per route, and all the routes are exported
+
+### in /src/controllers
+
+in ´auth.controllers.js´ controllers middleware, that handle the last part of a succesfull request. The /signup is open to public and can throw a 409 or a 500, while the rest of the controllers handle requests that have already passed authorization.
+
+### in /src/models
+
+in ´auth.User.js´ declaration of the User model for mongoose and shema methods
 
 </Panel>
 
-<Panel id="3" heading="How?" secondaryHeading="About my process" >
-
-### Here there should be a "diary" of my process
-
-</Panel>
-
-<Panel id="4" heading="For Devs" secondaryHeading="Clone and install" >
+<Panel id="3" heading="For Devs" secondaryHeading="Clone and install" >
 
 ## How to use
 
@@ -93,33 +96,18 @@ npm start
 
 </Panel>
 
-<Panel id="5" heading="For Devs" secondaryHeading="Make your own version of this site" >
-
-## Getting Started
-
-These instructions here should be explaining which parts of the code you should change in order to host your own projects in development and production. ALso instructions on how to easily customise the theme. WILL UPDATE SOON.
-
-
-</Panel>
-<Panel id="6" heading="For Devs" secondaryHeading="Ok, now what?" >
+<Panel id="4" heading="For Devs" secondaryHeading="NPM scripts" >
 
 ## Available Commands
 
-1. `npm run dev` - starts the development server with hot reloading enabled
+1. `npm start` - starts the development server with hot reloading enabled
 
-2. `npm run build` - [builds](https://nextjs.org/docs#production-deployment) for production ahead of time
+2. `npm run build` - compiles and builds
 
-3. `npm run start` - starts the production server
+3. `npm run serve` - starts compiled server
 
-4. `npm run export` - [exports the website as static files](https://nextjs.org/docs#static-html-export)
+4. `npm run test` - runs tests with jest, no tests yet
 
-5. `npm run serve` - serves the static files on localhost (you need [serve](https://www.npmjs.com/package/serve) installed)
-
-6. `npm run publish` - for pushing code to github pages branch: runs a series of commands, that keep in /out your CNAME and .nojekyl files and pushes /out as a subtree to your master branch
-
-7. `npm run fast` - runs `build & export & publish` in a sequence for fast deployment to github pages
-
-## Happy Coding!
 </Panel>
 
 </PanelGrid>

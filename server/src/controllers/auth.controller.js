@@ -52,21 +52,6 @@ export function signIn(req, res) {
 }
 
 /**
- * Returns authStatus and User's username of session cookie,
- * Follows isAuthenticated() middleware, set in auth.routes
- * @param req req has session and user fields
- * @param res 200 with username in body
- * @returns void
- */
-export function authStatus(req, res) {
-  console.log("authStatus controller");
-  var userInfo = {
-    username: req.user.username
-  };
-  res.json(userInfo);
-}
-
-/**
  * Sign Out User from session
  * Follows isAuthenticated() middleware, set in auth.routes
  * @param req req has session and user fields
