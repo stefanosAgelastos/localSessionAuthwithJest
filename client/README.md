@@ -13,8 +13,7 @@
 <InfoPaper>
 
 ## About the project
-This project is about the front end part of a simple Sign Up - Sign Ip application based on sesions. It retrieves information about the user's session by setting a cookie on the user's browser.
-Routes that are marked as protected require authentication. Authentication success and failure are communicated to the user with custom alerts.
+This project is about the front end part of a simple Sign Up - Sign Ip application based on sesions. It retrieves information about the user's session by setting a cookie on the user's browser. You can find the back end code [here](https://github.com/stefanosAgelastos/localSessionAuthwithJest/tree/master/server).
 
 </InfoPaper>
 
@@ -28,7 +27,7 @@ Routes that are marked as protected require authentication. Authentication succe
 </InfoGrid>
 
 <PanelGrid>
-<Panel id="1" heading="What?" secondaryHeading="About the technologies I used" >
+<Panel id="0" heading="What?" secondaryHeading="About the functionality" >
 
 ### The Stack:
 - Javascript
@@ -37,6 +36,15 @@ Routes that are marked as protected require authentication. Authentication succe
 - Jest
 - Enzyme
 - react-router-dom
+</Panel>
+
+<Panel id="1" heading="What for?" secondaryHeading="About the technologies I used" >
+
+### Main features:
+
+- Routes that are marked as protected require authentication.
+- Allows cookies in the response headers.
+- Authentication success and failure are communicated to the user with custom alerts.
 </Panel>
 
 <Panel id="2" heading="For Devs" secondaryHeading="About the project structure" >
