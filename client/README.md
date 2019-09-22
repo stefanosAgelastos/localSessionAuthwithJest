@@ -27,7 +27,7 @@ This project is about the front end part of a simple Sign Up - Sign Ip applicati
 </InfoGrid>
 
 <PanelGrid>
-<Panel id="0" heading="What?" secondaryHeading="About the functionality" >
+<Panel id="1" heading="What?" secondaryHeading="About the functionality" >
 
 ### The Stack:
 - Javascript
@@ -38,7 +38,7 @@ This project is about the front end part of a simple Sign Up - Sign Ip applicati
 - react-router-dom
 </Panel>
 
-<Panel id="1" heading="What for?" secondaryHeading="About the technologies I used" >
+<Panel id="2" heading="What for?" secondaryHeading="About the technologies I used" >
 
 ### Main features:
 
@@ -47,7 +47,7 @@ This project is about the front end part of a simple Sign Up - Sign Ip applicati
 - Authentication success and failure are communicated to the user with custom alerts.
 </Panel>
 
-<Panel id="2" heading="For Devs" secondaryHeading="About the project structure" >
+<Panel id="3" heading="For Devs" secondaryHeading="About the project structure" >
 
 ### In /src
 
@@ -68,12 +68,12 @@ You will find static assets like fonts and icons.
 
 </Panel>
 
-<Panel id="3" heading="For Devs" secondaryHeading="Clone and install" >
+<Panel id="4" heading="For Devs" secondaryHeading="Clone and install" >
 
 ## How to use
 
-**Note : npm6** is required to install dependencies properly.
-**Note : Node Server** must be up and running on your local machine.
+**Note : npm6** is required to install dependencies properly. <br/>
+**Note : Node Server** must be up and running on your local machine. Find it [here](https://github.com/stefanosAgelastos/localSessionAuthwithJest/tree/master/server). <br/>
 Download or clone the repo
 
 ```sh
@@ -90,7 +90,7 @@ npm start
 
 </Panel>
 
-<Panel id="4" heading="For Devs" secondaryHeading="NPM scripts" >
+<Panel id="5" heading="For Devs" secondaryHeading="NPM scripts" >
 
 ## Available Commands From Create React App
 
