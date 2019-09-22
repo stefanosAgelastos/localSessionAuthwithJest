@@ -13,10 +13,7 @@
 <InfoPaper>
 
 ## About the project
-This project is about the backend part of a simple Sign Up - Sign Ip application. It holds information about the user's session by setting a cookie on the user's browser.
-Every subsequent request that holds the cookie is used to authorize the user, and to retrieve information about the session e.g. if the user has signed out etc.
-User and session persistence is handled by a Mongo noSQL database.
-There is also babel configuration to compile ES6 syntax for node, and hot realoading.
+This project is about the backend part of a simple Sign Up - Sign Ip application. It holds information about the user's session by setting a cookie on the user's browser. You can find the front end code [here](https://github.com/stefanosAgelastos/localSessionAuthwithJest/tree/master/client).
 
 </InfoPaper>
 
@@ -36,7 +33,7 @@ There is also babel configuration to compile ES6 syntax for node, and hot realoa
 </InfoGrid>
 
 <PanelGrid>
-<Panel id="1" heading="What?" secondaryHeading="About the technologies I used" >
+<Panel id="0" heading="What?" secondaryHeading="About the technologies I used" >
 
 ### The Stack:
 - Javascript
@@ -47,6 +44,17 @@ There is also babel configuration to compile ES6 syntax for node, and hot realoa
 - Mongoose
 - Babel
 </Panel>
+
+<Panel id="1" heading="What for?" secondaryHeading="About the features" >
+
+### Main features:
+- Assigns a session cookie on the response headers for every new request.
+- Exposes publicly a /signup endpoint where the client code can send credentials for registering a new user.
+- Exposes a /signin endpoint where passport acts as middleware for authenticating the users credentials.
+- If the credentils pass the passport middleware, the session cookie is assigned the user's id in the database.
+- Every subsequent request that holds the cookie is used to authorize the user, and to retrieve information about the session e.g. if the user has signed out etc.
+- User and session persistence is handled by a Mongo noSQL database.
+- There is also babel configuration to compile ES6 syntax for node, and hot realoading.
 
 <Panel id="2" heading="For Devs" secondaryHeading="About the project structure" >
 
