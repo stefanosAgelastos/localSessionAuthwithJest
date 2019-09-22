@@ -45,7 +45,7 @@ This project is about the backend part of a simple Sign Up - Sign Ip application
 - Babel
 </Panel>
 
-<Panel id="1" heading="What for?" secondaryHeading="About the features" >
+<Panel id="1" heading="What for?" secondaryHeading="About the functionality" >
 
 ### Main features:
 - Assigns a session cookie on the response headers for every new request.
