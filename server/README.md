@@ -33,7 +33,7 @@ This project is about the backend part of a simple Sign Up - Sign Ip application
 </InfoGrid>
 
 <PanelGrid>
-<Panel id="0" heading="What?" secondaryHeading="About the technologies I used" >
+<Panel id="1" heading="What?" secondaryHeading="About the technologies I used" >
 
 ### The Stack:
 - Javascript
@@ -45,7 +45,7 @@ This project is about the backend part of a simple Sign Up - Sign Ip application
 - Babel
 </Panel>
 
-<Panel id="1" heading="What for?" secondaryHeading="About the functionality" >
+<Panel id="2" heading="What for?" secondaryHeading="About the functionality" >
 
 ### Main features:
 - Assigns a session cookie on the response headers for every new request.
@@ -57,7 +57,7 @@ This project is about the backend part of a simple Sign Up - Sign Ip application
 - User and session persistence is handled by a Mongo noSQL database.
 - There is also babel configuration to compile ES6 syntax for node, and hot realoading.
 
-<Panel id="2" heading="For Devs" secondaryHeading="About the project structure" >
+<Panel id="3" heading="For Devs" secondaryHeading="About the project structure" >
 
 ### In /src
 
@@ -83,11 +83,11 @@ in ´auth.User.js´ declaration of the User model for mongoose and shema methods
 
 </Panel>
 
-<Panel id="3" heading="For Devs" secondaryHeading="Clone and install" >
+<Panel id="4" heading="For Devs" secondaryHeading="Clone and install" >
 
 ## How to use
 
-**Note : npm6** is required to install dependencies properly.
+**Note : npm6** is required to install dependencies properly. <br/>
 **Note : Mongo** must be up and running on your local machine.
 Download or clone the repo
 
@@ -105,7 +105,7 @@ npm start
 
 </Panel>
 
-<Panel id="4" heading="For Devs" secondaryHeading="NPM scripts" >
+<Panel id="5" heading="For Devs" secondaryHeading="NPM scripts" >
 
 ## Available Commands
 
