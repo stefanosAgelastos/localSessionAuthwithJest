@@ -53,6 +53,7 @@ This project is about the backend part of a simple Sign Up - Sign Ip application
 - Exposes a /signin endpoint where passport acts as middleware for authenticating the users credentials.
 - If the credentils pass the passport middleware, the session cookie is assigned the user's id in the database.
 - Every subsequent request that holds the cookie is used to authorize the user, and to retrieve information about the session e.g. if the user has signed out etc.
+- Error handling with relevant usage of http status codes.
 - User and session persistence is handled by a Mongo noSQL database.
 - There is also babel configuration to compile ES6 syntax for node, and hot realoading.
 
