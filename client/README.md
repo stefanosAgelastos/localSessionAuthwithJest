@@ -27,7 +27,7 @@ This project is about the front end part of a simple Sign Up - Sign Ip applicati
 </InfoGrid>
 
 <PanelGrid>
-<Panel id="1" heading="What?" secondaryHeading="About the functionality" >
+<Panel id="1" heading="What?" secondaryHeading="About the technologies I used" >
 
 ### The Stack:
 - Javascript
@@ -38,7 +38,7 @@ This project is about the front end part of a simple Sign Up - Sign Ip applicati
 - react-router-dom
 </Panel>
 
-<Panel id="2" heading="What for?" secondaryHeading="About the technologies I used" >
+<Panel id="2" heading="What for?" secondaryHeading="About the functionality" >
 
 ### Main features:
 
