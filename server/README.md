@@ -56,7 +56,7 @@ This project is about the backend part of a simple Sign Up - Sign Ip application
 - Error handling with relevant usage of http status codes.
 - User and session persistence is handled by a Mongo noSQL database.
 - There is also babel configuration to compile ES6 syntax for node, and hot realoading.
-
+</Panel>
 <Panel id="3" heading="For Devs" secondaryHeading="About the project structure" >
 
 ### In /src
