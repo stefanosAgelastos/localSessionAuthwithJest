@@ -13,7 +13,7 @@
 <InfoPaper>
 
 ## About the project
-This project is about the backend part of a simple Sign Up - Sign Ip application. It holds information about the user's session by setting a cookie on the user's browser. You can find the front end code [here](https://github.com/stefanosAgelastos/localSessionAuthwithJest/tree/master/client).
+This project is about the backend part of a simple Sign Up - Sign Ip application. It holds information about the user's session by setting a cookie on the user's browser. You can find the front end code [here](https://www.stefworks.ml/projects/auth-session-react).
 
 </InfoPaper>
 
